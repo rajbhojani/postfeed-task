@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-carousel": "^2.0.0",
+    "@vue/compiler-sfc": "^3.3.2",
     "vue": "^3.3.2"
   }
 }

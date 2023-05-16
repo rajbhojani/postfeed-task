@@ -18,13 +18,7 @@
         </div>
       </div>
       <div class="carousel">
-        <img
-          v-for="image in post.images"
-          :src="image"
-          :key="image"
-          alt="Post Image"
-          class="w-full"
-        />
+        <VueCarousel :data="getimages(post.images)"></VueCarousel>
       </div>
       <Actions :actions="post.actions" class="pl-4 py-4 mb-4 bg-[#FFFFFF]" />
       <Comments :comments="post.comments" class="mt-4" />
@@ -33,6 +27,19 @@
 </template>
 
 <script setup>
+import VueCarousel from "@chenfengyuan/vue-carousel";
+import * as Vue from "vue/dist/vue.esm-bundler";
+
+function getimages(images) {
+  return images.map((img) => {
+    return (
+      '<div class="example-slide"><img src="' +
+      img +
+      '" alt="Post Image" class="w-full"/></div>'
+    );
+  });
+}
+
 const posts = ref([]);
 
 posts.value = [
@@ -46,6 +53,8 @@ posts.value = [
     ],
     tags: ["#2023", "#TODAYISMONDAY", "#TOP", "#POPS!", "#WOW", "#ROW"],
     images: [
+      "https://wjddnjs754.cafe24.com/web/product/small/202303/5b9279582db2a92beb8db29fa1512ee9.jpg",
+      "https://wjddnjs754.cafe24.com/web/product/small/202303/5b9279582db2a92beb8db29fa1512ee9.jpg",
       "https://wjddnjs754.cafe24.com/web/product/small/202303/5b9279582db2a92beb8db29fa1512ee9.jpg",
     ],
     actions: { like: 5, comments: 5, save: true, more: true },
@@ -70,6 +79,15 @@ posts.value = [
 </script>
 
 <style>
+.example-slide {
+  align-items: center;
+  background-color: #666;
+  color: #999;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  min-height: 10rem;
+}
 .username {
   height: 14px;
   font-style: normal;
